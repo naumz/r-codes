@@ -1,4 +1,5 @@
 # Example code to demonstrate how to deal with multiple variables together
+# (includes outlier detection)
 #
 # Date: December 16, 2016
 #
