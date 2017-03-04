@@ -5,4 +5,6 @@ Various R codes to demonstrate concepts
 
 2. timing_loops.R - timing loops in R with various data types
 
-3. hash_template.R - implementing fast hashes in R
+3. hash_template.R - implementing fast hashes in 
+
+4. stats_misleading.R - Demonstrating potentially misleading data science case studies
