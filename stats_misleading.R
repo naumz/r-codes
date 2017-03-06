@@ -24,11 +24,11 @@ library(data.table)
 x <- sapply(1:6, function(x) 10^x)  # different population sizes
 y <- lapply(x, function(x) max(rnorm(x)))  # finding best performer under the same distribution
 pop.plot <- qplot(x = x, y = unlist(y), geom = "point") +
-  scale_x_log10() +
-  labs(title = "Best performance vs Population size",
-       x = "Population (sample) Size",
-       y = "Best Performer") +
-  geom_text(aes(label = round(unlist(y), 2)), nudge_y = 0.2)
+            scale_x_log10() +
+            labs(title = "Best performance vs Population size",
+                 x = "Population (sample) size",
+                 y = "Best Performer") +
+            geom_text(aes(label = round(unlist(y), 2)), nudge_y = 0.2)
 print(pop.plot)  # best performer gets better as population size increases
 
 #### Simpson's Paradox ####
