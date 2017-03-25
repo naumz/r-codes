@@ -25,6 +25,9 @@ DT1 <- data.table(name = c("John","Smith","Jane","Ruby","Emerald","Jasmine","Tul
 mytestdata <- data.table(name=c("tom","john","tom","john","jim","jim","jack"),
                          len=c(10,15,12,23,3,12,3),
                          group=c("a","b","a","a","a","b","b"))
+mytestdata1 <- data.table(x = c(1,2,3,4,5,6,1,2,3,4,5,6),
+                          y = c(2,3.8,6.2,8.1,10.3,11.7,2.9,6.3,8.7,12.6,15.1,17.9),
+                          group = c(1,1,1,1,1,1,2,2,2,2,2,2))
 
 # Access values from a column - get is slower than [[]]
 microbenchmark(iris.dt[[1]])
@@ -66,8 +69,7 @@ iris.dt[, seq_len(.N), by=Species]
 microbenchmark(mytestdata[, .SD[, .(mean(len), .N), by=name][order(V1)], by=group][, myrank:= 1:.N, by=group])
 microbenchmark(mytestdata[, .SD[, .(mean(len), .N), by=name][order(V1), rank := 1:.N], by=group][order(rank), .SD, by=group])
 microbenchmark(mytestdata[, .SD[, .(mean(len), .N), by=name][, myrank:= frank(V1)], by=group][order(myrank), .SD, by=group])
-mytestdata[, .SD[, .(mean(len), .N), by="name"][order(V1), myrank := 1:.N], by = "group"]  # does not re-order
+microbenchmark(mytestdata[, .SD[, .(mean(len), .N), by="name"][order(V1), myrank := 1:.N], by = "group"])  # does not re-order
 
-
-
-
+# summarize a column's values by a grouping column
+mytestdata1[, as.list(summary(y)), by = "group"]
